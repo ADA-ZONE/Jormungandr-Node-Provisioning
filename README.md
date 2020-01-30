@@ -52,6 +52,8 @@ Once this is all done, use the below command to run this playbook and provision 
 
 `ansible-playbook bootstrap.yml -i inventory -l yourservername -e $VARS`
 
+NOTE: `yourservername` must match that of the one you set above in `inventory/static.yaml`
+
 Example:
 
 ```ansible-playbook bootstrap.yml -i inventory -l myubuntuserver -e "node_sig_key=kes25519-12-sk1qqqq... node_vrf_key=vrf_sk1df3ycv... node_pool_id=7ab2f7b..."```
@@ -64,3 +66,23 @@ Three variables are required for the `node_secret.yaml` file:
 - `node_vrf_key`
 - `node_pool_id`
 
+### Optional variables
+
+You can override the trusted peers by adding `trusted_peers:` under `vars` in the `bootstrap.yaml`.
+
+e.g.
+
+```
+...
+    vars:
+      jormungandr_max_unreachable_nodes_to_connect_per_event: 1
+      jormungandr_rest_port: 3000
+      jormungandr_public_address_port: 3001
+      binary_version: 0.8.9
+      trusted_peers:
+        - address: ...
+            id: ...
+        - address: ...
+            id: ...
+...
+ ```
