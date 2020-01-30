@@ -10,12 +10,34 @@ Jormungandr Systemd service.
 Settings have followed the Cardano's community suggestions.
 Special thanks to https://gist.github.com/ilap/54027fe9af0513c2701dc556221198b2
 
+* You can add/edit any system settings in `vars/static.yml` - currently using settings from the gist references above
+* You can edit the jormungandr ports in `bootstrap.yml`
+* This script installs `chrony` and disables `timesyncd` and uses settings from the gist referenced above
+* You can set the version of Jormungandr you want to install in `bootstrap.yml`, currently at `0.8.9` - e.g. 
+```
+...
+    vars:
+      jormungandr_max_unreachable_nodes_to_connect_per_event: 1
+      jormungandr_rest_port: 3000
+      jormungandr_public_address_port: 3001
+      binary_version: 0.8.9 <-----------
+...
+ ```
+
 ## Prerequisites
 
 Ansible 2.9.x and dependencies. This is an Ansible script which is software for the purposes of provisioning.
 
-Access to server instances as defined in `inventory/` over ssh.
-Make sure you edit `inventory/` to point to the server you wish to provision and that the machine you are running this from can SSH into that server - i.e. has the ssh key.
+Access to server instances as defined in `inventory/static.yml` over ssh.
+Make sure you edit `inventory/static.yml` to point to the server you wish to provision and that the machine you are running this from can SSH into that server - i.e. has the ssh key.
+
+```
+all:
+  hosts:
+    yourservername: # this is what your server will be referred as, change to what you like
+      ansible_host: INSERT_SERVER_IP
+      ansible_user: INSERT_SERVER_USER
+```
 
 ## Dependencies
 
@@ -28,7 +50,7 @@ You can install Galaxy roles with:
 
 Once this is all done, use the below command to run this playbook and provision your server. Replace `$VARS` with a list of your pool's specific variables.
 
-`ansible-playbook bootstrap.yml -i inventory -e $VARS`
+`ansible-playbook bootstrap.yml -i inventory -l yourservername -e $VARS`
 
 Example:
 

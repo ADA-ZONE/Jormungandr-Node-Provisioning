@@ -1,3 +1,2 @@
 ---
-- src: datadog.datadog
 - src: davespanton.jormungandr_ansible_role
