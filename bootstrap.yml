@@ -48,23 +48,8 @@
       name: davespanton.jormungandr_ansible_role
     vars:
       jormungandr_max_unreachable_nodes_to_connect_per_event: 1
-      jormungandr_rest_port: 8080
-      jormungandr_public_address_port: 8081
-
-  - name: Setup Datadog agent
-    include_role:
-      name: datadog.datadog
-    vars:
-      datadog_site: "datadoghq.eu"
-      datadog_additional_groups: systemd-journal
-      datadog_config:
-        logs_enabled: true
-      datadog_checks:
-        journald:
-          logs:
-            - type: journald
-              include_units:
-                - jormungandr.service
+      jormungandr_rest_port: 3000
+      jormungandr_public_address_port: 3001
 
   handlers:
     - name: restart chrony

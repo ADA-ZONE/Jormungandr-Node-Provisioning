@@ -1,5 +1,5 @@
 all:
   hosts:
-    homebuntu:
-      ansible_host: 92.237.75.214
-      ansible_user: root
+    yourservername:
+      ansible_host: INSERT_SERVER_IP
+      ansible_user: INSERT_SERVER_USER
