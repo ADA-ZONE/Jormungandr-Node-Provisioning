@@ -50,6 +50,7 @@
       jormungandr_max_unreachable_nodes_to_connect_per_event: 1
       jormungandr_rest_port: 3000
       jormungandr_public_address_port: 3001
+      binary_version: 0.8.9
 
   handlers:
     - name: restart chrony

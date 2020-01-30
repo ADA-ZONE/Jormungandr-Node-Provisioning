@@ -13,6 +13,16 @@ Special thanks to https://gist.github.com/ilap/54027fe9af0513c2701dc556221198b2
 * You can add/edit any system settings in `vars/static.yml` - currently using settings from the gist references above
 * You can edit the jormungandr ports in `bootstrap.yml`
 * This script installs `chrony` and disables `timesyncd` and uses settings from the gist referenced above
+* You can set the version of Jormungandr you want to install in `bootstrap.yml`, currently at `0.8.9` - e.g. 
+```
+...
+    vars:
+      jormungandr_max_unreachable_nodes_to_connect_per_event: 1
+      jormungandr_rest_port: 3000
+      jormungandr_public_address_port: 3001
+      binary_version: 0.8.9 <-----------
+...
+ ```
 
 ## Prerequisites
 
